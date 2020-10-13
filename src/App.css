@@ -8,4 +8,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #00e676;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+
+.cell-uncovered {
+  background: #ffea00;
+}
+.cell-flagged {
+  background: #ff4569;
 }
