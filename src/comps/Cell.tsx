@@ -10,7 +10,7 @@ function CellComp(props: Props) {
     cell,
   } = props
   return (
-    <div>
+    <div className={'cell'}>
       { cell.numOfMinesAround }
     </div>
   )
