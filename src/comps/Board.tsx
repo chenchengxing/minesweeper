@@ -18,12 +18,12 @@ function BoardComp(props: Props) {
   return (
     <div>
       {
-        rearrangedCells.map((cellRow: Cell[]) => {
+        rearrangedCells.map((cellRow: Cell[], rowIndex: number) => {
           return (
-            <div className={'cell-row'}>
+            <div key={rowIndex} className={'cell-row'}>
               {
                 cellRow.map((cell: Cell) => {
-                  return <CellComp cell={cell} />
+                  return <CellComp key={cell.index} cell={cell} />
                 })
               }
             </div>
