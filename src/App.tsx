@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import logo from './logo.svg'
+import React, { useCallback, useEffect, useState } from 'react'
 import './App.css'
-import BoardComp from './comps/Board'
-import { Cell, CellStatus } from './types/Cell'
+import { Cell, CellStatus, isCellCovered, isCellFlagged } from './types/Cell'
 import { BOARD_COLUMNS, BOARD_ROWS } from './constants/BoardDimensions'
+import BoardContainerComp from './comps/BoardContainer'
 
 function App() {
   const [ cells, setCells ] = useState<Cell[]>([])
@@ -20,13 +19,51 @@ function App() {
     }
     setCells(initialCells)
   }, [])
+
+  const handleCellRightClick = (index: number) => {
+    const targetCell = cells[index]
+    if (isCellCovered(targetCell)) {
+      setCells([
+        ...cells.slice(0, index),
+        {
+          ...targetCell,
+          status: CellStatus.Flagged,
+        },
+        ...cells.slice(index + 1),
+      ])
+    } else if (isCellFlagged(targetCell)) {
+      setCells([
+        ...cells.slice(0, index),
+        {
+          ...targetCell,
+          status: CellStatus.Covered,
+        },
+        ...cells.slice(index + 1),
+      ])
+    }
+  }
+  const handleCellClick = (index: number) => {
+    const targetCell = cells[index]
+    if (isCellCovered(targetCell)) {
+      setCells([
+        ...cells.slice(0, index),
+        {
+          ...targetCell,
+          status: CellStatus.Uncovered,
+        },
+        ...cells.slice(index + 1),
+      ])
+    }
+  }
   return (
     <div className='App'>
       <header>
         Minesweeper!
       </header>
-      <BoardComp 
+      <BoardContainerComp 
         cells={cells} 
+        onCellRightClick={handleCellRightClick}
+        onCellClick={handleCellClick}
       />
     </div>
   )

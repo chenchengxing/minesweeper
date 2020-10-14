@@ -10,3 +10,7 @@ export enum CellStatus {
   Uncovered,
   Flagged,
 }
+
+export const isCellCovered = (cell: Cell) => cell.status === CellStatus.Covered
+export const isCellUncovered = (cell: Cell) => cell.status === CellStatus.Uncovered
+export const isCellFlagged = (cell: Cell) => cell.status === CellStatus.Flagged

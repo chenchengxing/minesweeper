@@ -5,11 +5,13 @@ import { getCellDisplayContent } from '../utils/get-cell-display-content'
 
 interface Props {
   cell: Cell,
+  onClick(e: React.MouseEvent<HTMLElement, MouseEvent>): void,
 }
 
 function CellComp(props: Props) {
   const {
     cell,
+    onClick,
   } = props
   const { status } = cell
   return (
@@ -20,6 +22,7 @@ function CellComp(props: Props) {
           'cell-flagged': status === CellStatus.Flagged,
         })
       }
+      onClick={onClick}
     >
       { getCellDisplayContent(cell) }
     </div>
