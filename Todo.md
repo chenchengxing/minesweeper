@@ -1,4 +1,5 @@
 - [x] typing for Cell
 - [x] draw board with Cell
+- [x] right click hook
 - [] cell action: toggle between status
 - [] diplay for mines and noraml/safe cells in uncovered status
