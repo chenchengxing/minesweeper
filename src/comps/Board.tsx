@@ -9,12 +9,16 @@ export interface BoardCompProps {
   cells: Cell[],
   onCellRightClick(index: number): void,
   onCellClick(index: number): void,
+  numOfCols?: number,
+  numOfRows?: number,
 }
 function BoardComp(props: BoardCompProps) {
   const {
     cells,
     onCellRightClick,
     onCellClick,
+    numOfCols = BOARD_COLUMNS,
+    numOfRows = BOARD_ROWS,
   } = props
 
   const ref = useRef(null)
@@ -27,19 +31,16 @@ function BoardComp(props: BoardCompProps) {
     const rowIndex = Math.floor(relativeY / CELL_SIZE)
     const colIndex = Math.floor(relativeX / CELL_SIZE)
     // console.log(relativeX, relativeY, rowIndex, colIndex)
-    onCellRightClick(rowIndex * BOARD_COLUMNS + colIndex)
+    onCellRightClick(rowIndex * numOfCols + colIndex)
   }, [onCellRightClick])
 
   useContextMenuEvent(ref, handleRightClick)
 
   const handleClick = (rowIndex: number, colIndex: number) => () => {
-    onCellClick(rowIndex * BOARD_COLUMNS + colIndex)
+    onCellClick(rowIndex * numOfCols + colIndex)
   }
 
-  if (!cells.length) {
-    return null
-  }
-  const rearrangedCells: Cell[][] = rearrangeCells(cells)
+  const rearrangedCells: Cell[][] = rearrangeCells(cells, numOfRows, numOfCols)
   return (
     <div ref={ref}>
       {
