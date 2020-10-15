@@ -57,14 +57,16 @@ function App() {
   }
   return (
     <div className='App'>
-      <header>
-        Minesweeper!
-      </header>
-      <BoardContainerComp 
-        cells={cells} 
-        onCellRightClick={handleCellRightClick}
-        onCellClick={handleCellClick}
-      />
+      <div className='main'>
+        <header>
+          Minesweeper!
+        </header>
+        <BoardContainerComp 
+          cells={cells} 
+          onCellRightClick={handleCellRightClick}
+          onCellClick={handleCellClick}
+        />
+      </div>
     </div>
   )
 }
