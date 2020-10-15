@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import './App.css'
 import { Cell, CellStatus, isCellCovered, isCellFlagged } from './types/Cell'
-import { BOARD_COLUMNS, BOARD_ROWS } from './constants/BoardDimensions'
+import { BOARD_COLUMNS, BOARD_ROWS, NUMBER_OF_MINES } from './constants/BoardDimensions'
 import BoardContainerComp from './comps/BoardContainer'
+import { spreadMines } from './utils/spread-mines'
 
 function App() {
   const [ cells, setCells ] = useState<Cell[]>([])
@@ -17,7 +18,12 @@ function App() {
       }
       initialCells.push(cell)
     }
-    setCells(initialCells)
+    setCells(spreadMines({
+      cells: initialCells,
+      numOfMines: NUMBER_OF_MINES,
+      numOfCols: BOARD_COLUMNS,
+      numOfRows: BOARD_ROWS,
+    }))
   }, [])
 
   const handleCellRightClick = (index: number) => {
