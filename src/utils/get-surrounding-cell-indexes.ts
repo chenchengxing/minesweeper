@@ -48,27 +48,27 @@ export function getSurroundingCellIndexes(params: Params): number[] {
   return result
 }
 
-const hasTop = (index: number, len: number, row: number, col: number) => {
+export const hasTop = (index: number, len: number, row: number, col: number) => {
   return !(index < col)
 }
-const hasBottom = (index: number, len: number, row: number, col: number) => {
+export const hasBottom = (index: number, len: number, row: number, col: number) => {
   return !(index >= (row - 1) * col)
 }
-const hasLeft = (index: number, len: number, row: number, col: number) => {
+export const hasLeft = (index: number, len: number, row: number, col: number) => {
   return !(index % col === 0)
 }
-const hasRight = (index: number, len: number, row: number, col: number) => {
+export const hasRight = (index: number, len: number, row: number, col: number) => {
   return !((index + 1) % col === 0)
 }
-const hasTopLeft = (index: number, len: number, row: number, col: number) => {
+export const hasTopLeft = (index: number, len: number, row: number, col: number) => {
   return hasTop(index, len, row, col) && hasLeft(index - col, len, row, col)
 }
-const hasTopRgiht = (index: number, len: number, row: number, col: number) => {
+export const hasTopRight = (index: number, len: number, row: number, col: number) => {
   return hasTop(index, len, row, col) && hasRight(index - col, len, row, col)
 }
-const hasBottomLeft = (index: number, len: number, row: number, col: number) => {
+export const hasBottomLeft = (index: number, len: number, row: number, col: number) => {
   return hasBottom(index, len, row, col) && hasLeft(index + col, len, row, col)
 }
-const hasBottomRight = (index: number, len: number, row: number, col: number) => {
+export const hasBottomRight = (index: number, len: number, row: number, col: number) => {
   return hasBottom(index, len, row, col) && hasRight(index + col, len, row, col)
 }

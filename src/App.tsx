@@ -4,6 +4,7 @@ import { Cell, CellStatus, isCellCovered, isCellFlagged } from './types/Cell'
 import { BOARD_COLUMNS, BOARD_ROWS, NUMBER_OF_MINES } from './constants/BoardDimensions'
 import BoardContainerComp from './comps/BoardContainer'
 import { spreadMines } from './utils/spread-mines'
+import { uncoverAllSafeCells } from './utils/uncover-all-safe-cells'
 
 function App() {
   const [ cells, setCells ] = useState<Cell[]>([])
@@ -51,14 +52,23 @@ function App() {
   const handleCellClick = (index: number) => {
     const targetCell = cells[index]
     if (isCellCovered(targetCell)) {
-      setCells([
-        ...cells.slice(0, index),
-        {
-          ...targetCell,
-          status: CellStatus.Uncovered,
-        },
-        ...cells.slice(index + 1),
-      ])
+      if (!targetCell.isMine && targetCell.numOfMinesAround === 0) {
+        setCells(uncoverAllSafeCells({
+          cells, 
+          originCell: targetCell,
+          numOfCols: BOARD_COLUMNS,
+          numOfRows: BOARD_ROWS,
+        }))
+      } else {
+        setCells([
+          ...cells.slice(0, index),
+          {
+            ...targetCell,
+            status: CellStatus.Uncovered,
+          },
+          ...cells.slice(index + 1),
+        ])
+      }
     }
   }
   return (
