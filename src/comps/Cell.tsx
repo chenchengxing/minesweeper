@@ -16,6 +16,7 @@ function CellComp(props: Props) {
   const { status } = cell
   return (
     <div 
+      data-testid='cell'
       className={
         cn('cell', {
           'cell-uncovered': status === CellStatus.Uncovered,
