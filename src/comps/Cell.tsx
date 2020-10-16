@@ -19,6 +19,7 @@ function CellComp(props: Props) {
       data-testid='cell'
       className={
         cn('cell', {
+          'cell-covered': status === CellStatus.Covered,
           'cell-uncovered': status === CellStatus.Uncovered,
           'cell-flagged': status === CellStatus.Flagged,
         })

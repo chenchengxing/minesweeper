@@ -24,8 +24,12 @@
   background: #00e676;
   color: #000;
   border: 1px solid #fff;
+  transition: background-color 0.2s ease;
 }
 
+.cell-covered:hover {
+  background-color: #00a152;
+}
 
 .cell-uncovered {
   background: #ffea00;
