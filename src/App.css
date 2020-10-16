@@ -7,6 +7,10 @@
   margin-top: 50px;
 }
 
+.control-bar {
+  display: flex;
+}
+
 .cell-row {
   display: flex;
 }
