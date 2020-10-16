@@ -109,6 +109,7 @@ function App() {
           <header>
             {`Minesweeper!`}
           </header>
+          { gameStatus === GameStatus.PLAYING ? <div>{NUMBER_OF_MINES - cells.filter(cell => isCellFlagged(cell)).length}</div> : null }
           { gameStatus === GameStatus.LOST ? <button onClick={gameReset}>{`Game Over.. Restart?`}</button> : null }
           { gameStatus === GameStatus.WIN ? <button onClick={gameReset}>{`Cong! Restart?`}</button> : null }
         </div>
