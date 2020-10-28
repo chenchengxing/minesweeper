@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish": "npx gh-pages -d build"
+    "preghpages": "react-scripts build",
+    "ghpages": "npx gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
